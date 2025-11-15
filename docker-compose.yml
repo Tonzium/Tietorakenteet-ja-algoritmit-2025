@@ -1,0 +1,21 @@
+services:
+  jupyterlab:
+    build: .
+    container_name: cpp-jupyterlab
+    ports:
+      - "8888:8888"
+    environment:
+      - JUPYTER_TOKEN=yes           # not used in this project
+      - JUPYTER_ENABLE_LAB=yes      # ensure Lab interface
+      - GRANT_SUDO=yes              # only needed if sudo used in container
+    volumes:
+      - ./work:/home/jovyan/work    # notebooks live here
+    command: >
+      start-notebook.py
+      --NotebookApp.token=''
+      --NotebookApp.password=''
+
+volumes:
+  jupyter-data:
+    driver: local
+
