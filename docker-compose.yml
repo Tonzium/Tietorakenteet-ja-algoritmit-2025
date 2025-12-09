@@ -3,7 +3,7 @@ services:
     build: .
     container_name: cpp-jupyterlab
     ports:
-      - "8888:8888"
+      - "8701:8701"
     environment:
       - JUPYTER_TOKEN=yes           # not used in this project
       - JUPYTER_ENABLE_LAB=yes      # ensure Lab interface
@@ -12,6 +12,8 @@ services:
       - ./work:/home/jovyan/work    # notebooks live here
     command: >
       start-notebook.py
+      --NotebookApp.port=8701
+      --NotebookApp.ip='0.0.0.0'
       --NotebookApp.token=''
       --NotebookApp.password=''
 
